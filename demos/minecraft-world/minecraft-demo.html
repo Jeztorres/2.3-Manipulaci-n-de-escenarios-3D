@@ -142,32 +142,41 @@
 
 				const matrix = new THREE.Matrix4();
 
+				// Usaremos una textura única de piedra, así que neutralizamos el remapeo de tiles (1x1)
+				const tilesHoriz = 1, tilesVert = 1;
+				const stoneTile = { col: 0, row: 0 };
+
+				function mapUVsToTile( geometry, col, row ) {
+					const uv = geometry.attributes.uv;
+					for ( let i = 0; i < uv.count; i++ ) {
+						const u = uv.getX( i );
+						const v = uv.getY( i );
+						uv.setXY( i, ( u + col ) / tilesHoriz, ( v + row ) / tilesVert );
+					}
+					uv.needsUpdate = true;
+				}
+
 				const pxGeometry = new THREE.PlaneGeometry( 100, 100 );
-				pxGeometry.attributes.uv.array[ 1 ] = 0.5;
-				pxGeometry.attributes.uv.array[ 3 ] = 0.5;
+				mapUVsToTile( pxGeometry, stoneTile.col, stoneTile.row );
 				pxGeometry.rotateY( Math.PI / 2 );
 				pxGeometry.translate( 50, 0, 0 );
 
 				const nxGeometry = new THREE.PlaneGeometry( 100, 100 );
-				nxGeometry.attributes.uv.array[ 1 ] = 0.5;
-				nxGeometry.attributes.uv.array[ 3 ] = 0.5;
+				mapUVsToTile( nxGeometry, stoneTile.col, stoneTile.row );
 				nxGeometry.rotateY( - Math.PI / 2 );
 				nxGeometry.translate( - 50, 0, 0 );
 
 				const pyGeometry = new THREE.PlaneGeometry( 100, 100 );
-				pyGeometry.attributes.uv.array[ 5 ] = 0.5;
-				pyGeometry.attributes.uv.array[ 7 ] = 0.5;
+				mapUVsToTile( pyGeometry, stoneTile.col, stoneTile.row );
 				pyGeometry.rotateX( - Math.PI / 2 );
 				pyGeometry.translate( 0, 50, 0 );
 
 				const pzGeometry = new THREE.PlaneGeometry( 100, 100 );
-				pzGeometry.attributes.uv.array[ 1 ] = 0.5;
-				pzGeometry.attributes.uv.array[ 3 ] = 0.5;
+				mapUVsToTile( pzGeometry, stoneTile.col, stoneTile.row );
 				pzGeometry.translate( 0, 0, 50 );
 
 				const nzGeometry = new THREE.PlaneGeometry( 100, 100 );
-				nzGeometry.attributes.uv.array[ 1 ] = 0.5;
-				nzGeometry.attributes.uv.array[ 3 ] = 0.5;
+				mapUVsToTile( nzGeometry, stoneTile.col, stoneTile.row );
 				nzGeometry.rotateY( Math.PI );
 				nzGeometry.translate( 0, 0, - 50 );
 
@@ -225,14 +234,49 @@
 				const geometry = BufferGeometryUtils.mergeGeometries( geometries );
 				geometry.computeBoundingSphere();
 
-				const texture = new THREE.TextureLoader().load( '../../textures/minecraft/atlas.png' );
-				texture.colorSpace = THREE.SRGBColorSpace;
-				texture.magFilter = THREE.NearestFilter;
+				// Intentar cargar una textura específica de piedra si existe
+				const loader = new THREE.TextureLoader();
+				loader.load(
+					'../../textures/minecraft/texturapiedra.jpg',
+					(stoneTex) => {
+						stoneTex.colorSpace = THREE.SRGBColorSpace;
+						stoneTex.magFilter = THREE.NearestFilter;
+						stoneTex.minFilter = THREE.NearestFilter;
+						stoneTex.generateMipmaps = false;
+						// Para compatibilidad con texturas NPOT usamos ClampToEdge y no repetimos
+						stoneTex.wrapS = THREE.ClampToEdgeWrapping;
+						stoneTex.wrapT = THREE.ClampToEdgeWrapping;
 
-				const mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { map: texture, side: THREE.DoubleSide } ) );
-				scene.add( mesh );
+						const stoneMaterial = new THREE.MeshStandardMaterial( {
+							map: stoneTex,
+							roughness: 0.95,
+							metalness: 0.0,
+							side: THREE.DoubleSide
+						} );
 
-				const ambientLight = new THREE.AmbientLight( 0xeeeeee, 3 );
+						const mesh = new THREE.Mesh( geometry, stoneMaterial );
+						scene.add( mesh );
+					},
+					undefined,
+					// Fallback: usar el atlas existente si la textura no está disponible
+					() => {
+						const atlas = loader.load( '../../textures/minecraft/atlas.png' );
+						atlas.colorSpace = THREE.SRGBColorSpace;
+						atlas.magFilter = THREE.NearestFilter;
+
+						const stoneMaterial = new THREE.MeshStandardMaterial( {
+							map: atlas,
+							roughness: 0.95,
+							metalness: 0.0,
+							side: THREE.DoubleSide
+						} );
+
+						const mesh = new THREE.Mesh( geometry, stoneMaterial );
+						scene.add( mesh );
+					}
+				);
+
+				const ambientLight = new THREE.AmbientLight( 0xeeeeee, 3.5 );
 				scene.add( ambientLight );
 
 				const directionalLight = new THREE.DirectionalLight( 0xffffff, 12 );

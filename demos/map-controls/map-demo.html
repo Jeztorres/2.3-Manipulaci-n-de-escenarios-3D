@@ -158,11 +158,16 @@
 
 				const geometry = new THREE.BoxGeometry();
 				geometry.translate( 0, 0.5, 0 );
-				const material = new THREE.MeshPhongMaterial( { color: 0xeeeeee, flatShading: true } );
+
+				// Paleta de colores reutilizable (mismos tonos que el demo de órbita)
+				const materials = [ 0xff6b6b, 0xffa34d, 0xffe66d, 0x6bcb77, 0x4d96ff, 0xc77dff ].map(
+					c => new THREE.MeshPhongMaterial( { color: c, flatShading: true, shininess: 40 } )
+				);
 
 				for ( let i = 0; i < 500; i ++ ) {
 
-					const mesh = new THREE.Mesh( geometry, material );
+					const mat = materials[ Math.floor( Math.random() * materials.length ) ];
+					const mesh = new THREE.Mesh( geometry, mat );
 					mesh.position.x = Math.random() * 1600 - 800;
 					mesh.position.y = 0;
 					mesh.position.z = Math.random() * 1600 - 800;
