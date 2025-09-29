@@ -1,0 +1,72 @@
+/**
+ * ============================================================================
+ * VARIABLES CSS - SISTEMA DE DISEÑO UNIFICADO
+ * ============================================================================
+ * 
+ * PROPÓSITO:
+ *   Define el sistema completo de tokens de diseño usando CSS Custom Properties.
+ *   Centraliza colores, espaciado y configuración para mantener consistencia
+ *   visual en todo el proyecto.
+ * 
+ * BENEFICIOS:
+ *   - Consistencia visual en todo el sitio
+ *   - Fácil mantenimiento y cambios globales
+ *   - Soporte para temas dinámicos (futuro)
+ *   - Compatibilidad con herramientas de desarrollo
+ * 
+ * ARQUITECTURA:
+ *   - Paleta de colores semántica (primary, secondary, accent)
+ *   - Colores de estado para UI feedback
+ *   - Sistema de grises para jerarquía visual
+ *   - Efectos glassmorphism para UI moderna
+ * 
+ * INSPIRACIÓN:
+ *   - Material Design 3.0 color system
+ *   - UIverse.io palettes y efectos modernos
+ *   - Apple Human Interface Guidelines
+ * 
+ * USO:
+ *   var(--primary) en cualquier selector CSS
+ *   Ejemplo: background: var(--primary);
+ * 
+ * AUTOR: Jezrael Jared Gómez Torres
+ * FECHA: 2025
+ * ============================================================================
+ */
+
+:root {
+  /* ========== PALETA DE COLORES PRIMARIA ========== */
+  /* Colores principales del sistema de diseño */
+  --primary: #667eea;        /* Azul violeta principal - Usado en botones CTA, enlaces activos */
+  --secondary: #764ba2;      /* Púrpura secundario - Gradientes y elementos decorativos */
+  --accent: #f093fb;         /* Rosa accent - Highlights, badges y efectos especiales */
+  
+  /* ========== COLORES DE ESTADO SEMÁNTICO ========== */
+  /* Sistema de colores para feedback de UI e interacciones */
+  --success: #4facfe;        /* Azul éxito - Confirmaciones y estados positivos */
+  --warning: #f6d365;        /* Amarillo advertencia - Alertas y advertencias */
+  --danger: #fda085;         /* Coral peligro - Errores y acciones destructivas */
+  
+  /* ========== COLORES DE FONDO Y SUPERFICIE ========== */
+  /* Jerarquía de fondos para profundidad visual */
+  --dark: #0a0e27;          /* Azul oscuro - Navbar, footer y elementos de UI */
+  --darker: #050816;        /* Azul muy oscuro - Fondo principal de la aplicación */
+  
+  /* ========== SISTEMA DE COLORES DE TEXTO ========== */
+  /* Jerarquía tipográfica para legibilidad optimal */
+  --light: #ffffff;         /* Blanco puro - Títulos y texto principal de alta importancia */
+  --gray: #8892b0;          /* Gris medio - Texto secundario y contenido de soporte */
+  --gray-light: #a8b2d1;    /* Gris claro - Texto terciario, metadatos y elementos deshabilitados */
+  
+  /* ========== EFECTOS GLASSMORPHISM MODERNOS ========== */
+  /* Sistema de transparencias para efectos de cristal modernos */
+  /* Inspirado en macOS Big Sur y iOS design language */
+  --glass: rgba(255, 255, 255, 0.1);        /* Fondo cristal - Tarjetas y overlays */
+  --glass-border: rgba(255, 255, 255, 0.2); /* Borde cristal - Contornos sutiles */
+  
+  /* ========== VARIABLES DERIVADAS PARA COMPONENTES ========== */
+  /* Colores calculados automáticamente para mejor cohesión */
+  --primary-color: var(--primary);          /* Alias para compatibilidad */
+  --primary-hover: #a78bfa;                 /* Estado hover calculado */
+  --navbar-bg: rgba(20, 25, 40, 0.85);     /* Fondo navbar con transparencia */
+}

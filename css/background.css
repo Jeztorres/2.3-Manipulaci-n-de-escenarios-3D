@@ -1,0 +1,96 @@
+/**
+ * ============================================================================
+ * FONDO ANIMADO Y SISTEMA DE PARTÍCULAS
+ * ============================================================================
+ * 
+ * Sistema de fondo dinámico con gradientes animados y partículas flotantes.
+ * Crea una experiencia visual inmersiva sin afectar el rendimiento.
+ * 
+ * Inspirado en: UIverse.io background effects
+ * Referencia: https://uiverse.io/backgrounds
+ * 
+ * COMPONENTES:
+ * - Fondo con gradientes radiales animados
+ * - Sistema de partículas flotantes
+ * - Efectos de profundidad y movimiento
+ * 
+ * TÉCNICAS UTILIZADAS:
+ * - Multiple radial gradients
+ * - CSS animations
+ * - Fixed positioning
+ * - Z-index layering
+ * ============================================================================
+ */
+
+/* ========== FONDO ANIMADO PRINCIPAL ========== */
+/* 
+ * Crea un fondo dinámico con múltiples gradientes radiales
+ * que se animan para dar sensación de movimiento y profundidad
+ */
+.bg-animation {
+  position: fixed;           /* Fijo en viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;              /* Detrás de todo el contenido */
+  
+  /* ========== GRADIENTES MÚLTIPLES ========== */
+  /* Cada gradiente crea un punto de luz en diferentes posiciones */
+  background: 
+    /* Gradiente superior - Color primario */
+    radial-gradient(
+      ellipse at top,
+      rgba(102, 126, 234, 0.3) 0%,    /* Azul violeta con transparencia */
+      transparent 50%
+    ),
+    /* Gradiente inferior - Color secundario */
+    radial-gradient(
+      ellipse at bottom,
+      rgba(118, 75, 162, 0.3) 0%,     /* Púrpura con transparencia */
+      transparent 50%
+    ),
+    /* Gradiente izquierdo - Color accent */
+    radial-gradient(
+      ellipse at left,
+      rgba(240, 147, 251, 0.2) 0%,    /* Rosa accent con transparencia */
+      transparent 50%
+    ),
+    /* Gradiente derecho - Color success */
+    radial-gradient(
+      ellipse at right,
+      rgba(79, 172, 254, 0.2) 0%,     /* Azul success con transparencia */
+      transparent 50%
+    );
+  
+  /* Animación continua de 20 segundos */
+  animation: bgShift 20s ease-in-out infinite;
+}
+
+/* ========== CONTENEDOR DE PARTÍCULAS ========== */
+/* 
+ * Contenedor fijo que alberga todas las partículas flotantes
+ */
+.particles {
+  position: fixed;           /* Fijo en viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;              /* Detrás del contenido, pero sobre el fondo */
+}
+
+/* ========== PARTÍCULAS INDIVIDUALES ========== */
+/* 
+ * Cada partícula es un pequeño círculo que flota verticalmente
+ * Inspirado en efectos de partículas de UIverse.io
+ */
+.particle {
+  position: absolute;                           /* Posicionamiento libre */
+  width: 4px;                                  /* Tamaño pequeño */
+  height: 4px;
+  background: var(--accent);                   /* Color accent (rosa) */
+  border-radius: 50%;                          /* Forma circular */
+  animation: float 6s ease-in-out infinite;    /* Animación flotante */
+  opacity: 0.6;                               /* Transparencia sutil */
+}

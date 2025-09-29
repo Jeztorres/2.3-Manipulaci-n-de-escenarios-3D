@@ -1,0 +1,352 @@
+/**
+ * ============================================================================
+ * TARJETAS DE DEMOS INTERACTIVAS
+ * ============================================================================
+ * 
+ * Sistema de tarjetas premium con efectos avanzados inspirados en UIverse.io
+ * Cada tarjeta representa una demo de Three.js con efectos únicos.
+ * 
+ * Inspirado en: UIverse.io card collection
+ * Referencia: https://uiverse.io/cards
+ * 
+ * CARACTERÍSTICAS:
+ * - Glassmorphism avanzado
+ * - Efectos glow personalizados por tema
+ * - Animaciones de hover con cubic-bezier
+ * - Elevación y escalado
+ * - Overlays dinámicos
+ * 
+ * TEMAS DE TARJETAS:
+ * - Minecraft: Colores tierra y verde
+ * - Orbit: Azules y púrpuras
+ * - PointerLock: Rojos y turquesas
+ * - Map: Naranjas y verdes
+ * ============================================================================
+ */
+
+/* ========== TARJETA BASE ========== */
+/* 
+ * Estructura base de todas las tarjetas demo
+ * Utiliza glassmorphism y animaciones suaves
+ */
+.demo-card {
+  position: relative;                          /* Para elementos absolutos */
+  height: 450px;                              /* Altura optimizada */
+  display: flex;                               /* Layout flexbox */
+  flex-direction: column;                      /* Orientación vertical */
+  
+  /* ========== GLASSMORPHISM MEJORADO ========== */
+  background: rgba(255, 255, 255, 0.08);     /* Fondo más visible */
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Borde más definido */
+  backdrop-filter: blur(25px) saturate(180%); /* Blur intenso con saturación */
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  
+  border-radius: 24px;                        /* Bordes redondeados */
+  padding: 32px;                              /* Padding interno generoso */
+  margin-bottom: 2rem;                        /* Espaciado inferior */
+  
+  /* ========== ANIMACIÓN AVANZADA ========== */
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  cursor: pointer;                            /* Indica interactividad */
+  overflow: hidden;                           /* Oculta elementos desbordantes */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset; /* Sombra profunda + borde interno */
+}
+
+/* ========== OVERLAY DINÁMICO ========== */
+/* 
+ * Pseudo-elemento que crea un overlay sutil en hover
+ * Técnica común en tarjetas premium de UIverse.io
+ */
+.demo-card::before {
+  content: "";                                /* Pseudo-elemento vacío */
+  position: absolute;                         /* Cubre toda la tarjeta */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  /* Gradiente sutil de overlay */
+  background: linear-gradient(135deg, var(--glass) 0%, transparent 100%);
+  opacity: 0;                                 /* Invisible por defecto */
+  transition: opacity 0.3s ease;             /* Transición suave */
+}
+
+/* Activación del overlay en hover */
+.demo-card:hover::before {
+  opacity: 1;                                 /* Visible en hover */
+}
+
+/* ========== EFECTOS HOVER PRINCIPALES ========== */
+/* 
+ * Combinación de elevación y escalado para efecto premium
+ */
+.demo-card:hover {
+  transform: translateY(-15px) scale(1.03);   /* Elevación + escalado */
+  background: rgba(255, 255, 255, 0.12);     /* Fondo más brillante */
+  border: 1px solid rgba(102, 126, 234, 0.3); /* Borde colorido */
+  box-shadow: 
+    0 25px 50px rgba(102, 126, 234, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* ========== SISTEMA GLOW ========== */
+/* 
+ * Elemento glow que se activa en hover
+ * Cada tema tiene su propio color de glow
+ */
+.card-glow {
+  position: absolute;                         /* Posicionamiento libre */
+  top: -50%;                                 /* Centrado expandido */
+  left: -50%;
+  width: 200%;                               /* Tamaño expandido */
+  height: 200%;
+  opacity: 0;                                /* Invisible por defecto */
+  transition: opacity 0.5s ease;            /* Transición suave */
+  pointer-events: none;                      /* No interfiere con clicks */
+}
+
+/* Activación del glow en hover */
+.demo-card:hover .card-glow {
+  opacity: 0.3;                              /* Visible pero sutil */
+}
+
+/* ========== GLOW TEMÁTICO MINECRAFT ========== */
+/* 
+ * Colores tierra y verde para el tema Minecraft
+ * Evoca bloques de tierra y hierba
+ */
+.minecraft-glow {
+  background: radial-gradient(
+    circle,
+    rgba(139, 69, 19, 0.4) 0%,               /* Marrón tierra */
+    rgba(34, 139, 34, 0.4) 50%,              /* Verde hierba */
+    transparent 70%                           /* Desvanecimiento */
+  );
+}
+
+/* ========== GLOW TEMÁTICO ORBIT ========== */
+/* 
+ * Azules y púrpuras para controles orbitales
+ * Evoca el espacio y la navegación 3D
+ */
+.orbit-glow {
+  background: radial-gradient(
+    circle,
+    rgba(74, 144, 226, 0.4) 0%,              /* Azul espacial */
+    rgba(123, 104, 238, 0.4) 50%,            /* Púrpura cósmico */
+    transparent 70%                           /* Desvanecimiento */
+  );
+}
+
+/* ========== GLOW TEMÁTICO POINTER LOCK ========== */
+/* 
+ * Rojos y turquesas para experiencia FPS
+ * Evoca acción y dinamismo
+ */
+.pointerlock-glow {
+  background: radial-gradient(
+    circle,
+    rgba(255, 107, 107, 0.4) 0%,             /* Rojo acción */
+    rgba(78, 205, 196, 0.4) 50%,             /* Turquesa dinámico */
+    transparent 70%                           /* Desvanecimiento */
+  );
+}
+
+/* ========== GLOW TEMÁTICO MAP ========== */
+/* 
+ * Naranjas y verdes para controles de mapa
+ * Evoca naturaleza y exploración
+ */
+.map-glow {
+  background: radial-gradient(
+    circle,
+    rgba(255, 167, 38, 0.4) 0%,              /* Naranja exploración */
+    rgba(102, 187, 106, 0.4) 50%,            /* Verde naturaleza */
+    transparent 70%                           /* Desvanecimiento */
+  );
+}
+
+/* ========== ESTRUCTURA ACTUAL DE TARJETAS ========== */
+/* 
+ * Estilos para la estructura HTML actual de las demos
+ */
+
+/* Vista previa del icono - centrada */
+.demo-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+/* Icono principal de la demo */
+.demo-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: white;
+  margin-bottom: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.3);
+  background: linear-gradient(135deg, var(--primary-color), var(--accent));
+}
+
+/* Contenido principal de la tarjeta */
+.demo-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 16px;
+}
+
+/* Título de la demo */
+.demo-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--light);
+  line-height: 1.2;
+}
+
+/* Descripción de la demo */
+.demo-description {
+  color: var(--gray-light);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+/* Acciones de la demo */
+.demo-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+}
+
+/* Botón principal de la demo */
+.demo-actions .btn {
+  width: 100%;
+  padding: 14px 24px;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent));
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.demo-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(139, 92, 246, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+/* Tecnología utilizada */
+.demo-tech {
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ========== HOVER EFFECTS PARA ICONOS ========== */
+.demo-card:hover .demo-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
+}
+
+/* ========== ICONOS TEMÁTICOS ESPECÍFICOS ========== */
+.demo-card:nth-child(1) .demo-icon {
+  background: linear-gradient(135deg, #4a90e2, #7b68ee); /* Orbit - Azul a púrpura */
+}
+
+.demo-card:nth-child(2) .demo-icon {
+  background: linear-gradient(135deg, #ff6b6b, #4ecdc4); /* Pointer Lock - Rojo a turquesa */
+}
+
+.demo-card:nth-child(3) .demo-icon {
+  background: linear-gradient(135deg, #ffa726, #66bb6a); /* Map - Naranja a verde */
+}
+
+.demo-card:nth-child(4) .demo-icon {
+  background: linear-gradient(135deg, #8b4513, #228b22); /* Minecraft - Marrón a verde */
+}
+
+/* ========== ASEGURAR VISIBILIDAD COMPLETA ========== */
+.demos-section {
+  background: rgba(5, 8, 22, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  min-height: 100vh;
+  padding: 120px 0 80px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.demos-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(102, 126, 234, 0.05) 0%,
+    rgba(240, 147, 251, 0.03) 50%,
+    rgba(118, 75, 162, 0.05) 100%
+  );
+  z-index: -1;
+}
+
+/* Asegurar que las tarjetas sean visibles */
+.demo-card {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* Mejorar contraste del texto */
+.demo-title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.demo-description {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.section-title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.section-subtitle {
+  color: rgba(255, 255, 255, 0.8) !important;
+}

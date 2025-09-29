@@ -1,0 +1,108 @@
+/**
+ * ============================================================================
+ * ANIMACIONES Y EFECTOS
+ * ============================================================================
+ * 
+ * Colección de animaciones CSS personalizadas para crear experiencias
+ * interactivas y atractivas. Inspirado en las mejores prácticas de UIverse.io
+ * 
+ * Referencia: https://uiverse.io/animations
+ * 
+ * ANIMACIONES INCLUIDAS:
+ * - bgShift: Animación de fondo dinámico
+ * - float: Partículas flotantes
+ * - rotate: Rotación continua
+ * - pulse: Efecto de pulsación
+ * - fadeInUp: Entrada desde abajo
+ * - bounce: Rebote suave
+ * 
+ * CLASES UTILITARIAS:
+ * - .fade-in-up: Aplica animación de entrada
+ * ============================================================================
+ */
+
+/* ========== ANIMACIÓN DE FONDO DINÁMICO ========== */
+/* Crea un efecto de fondo que se mueve y escala suavemente */
+@keyframes bgShift {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);        /* Estado inicial y final */
+  }
+  50% {
+    transform: scale(1.1) rotate(180deg);    /* Punto medio: escalado y rotado */
+  }
+}
+
+/* ========== PARTÍCULAS FLOTANTES ========== */
+/* Animación para elementos que flotan verticalmente con rotación */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);  /* Posición base */
+    opacity: 0;                              /* Invisible al inicio/final */
+  }
+  50% {
+    transform: translateY(-100px) rotate(180deg); /* Flotando hacia arriba */
+    opacity: 1;                                   /* Completamente visible */
+  }
+}
+
+/* ========== ROTACIÓN CONTINUA ========== */
+/* Rotación infinita para iconos y elementos decorativos */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);    /* Inicio */
+  }
+  to {
+    transform: rotate(360deg);  /* Rotación completa */
+  }
+}
+
+/* ========== EFECTO PULSE ========== */
+/* Pulsación suave para indicadores de estado */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;    /* Opacidad completa */
+  }
+  50% {
+    opacity: 0.5;  /* Opacidad reducida */
+  }
+}
+
+/* ========== ENTRADA DESDE ABAJO ========== */
+/* Animación de entrada elegante para elementos */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;                    /* Invisible */
+    transform: translateY(30px);   /* Desplazado hacia abajo */
+  }
+  to {
+    opacity: 1;                    /* Visible */
+    transform: translateY(0);      /* Posición final */
+  }
+}
+
+/* ========== REBOTE SUAVE ========== */
+/* Animación de rebote para indicadores de scroll */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(-50%) translateY(0);     /* Posición base */
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px); /* Rebote alto */
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);  /* Rebote bajo */
+  }
+}
+
+/* ========== CLASES UTILITARIAS ========== */
+/* Clase para aplicar animación de entrada */
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out both;
+}

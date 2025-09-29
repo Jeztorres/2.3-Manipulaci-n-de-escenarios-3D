@@ -1,0 +1,113 @@
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-buttons .ms-3 {
+    margin-left: 0 !important;
+    margin-top: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .demo-card {
+    height: auto;
+    padding: 24px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .demo-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+  }
+  
+  .demo-title {
+    font-size: 1.6rem;
+  }
+  
+  .demo-description {
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+  }
+
+  .navbar-collapse {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  /* Ajustes responsive para los botones */
+  button, .btn, .btn-slide, .btn-secondary-custom {
+    font-size: 16px;
+    padding: 0.5em 1em;
+    border-width: 2px;
+  }
+
+  .btn-primary {
+    font-size: 12px;
+    padding: 0.4em 0.8em;
+    border-width: 2px;
+  }
+
+  /* Asegurar que los botones mantengan su estilo en móviles */
+  .btn-slide, .btn-secondary-custom {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ajustes adicionales para pantallas muy pequeñas */
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .demo-card {
+    padding: 20px;
+    height: auto;
+  }
+  
+  .demo-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
+  
+  .demo-title {
+    font-size: 1.4rem;
+  }
+  
+  .demo-description {
+    font-size: 0.85rem;
+  }
+  
+  .demo-actions .btn {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+  
+  button, .btn, .btn-slide, .btn-secondary-custom {
+    font-size: 14px;
+    padding: 0.4em 0.8em;
+  }
+
+  .btn-primary {
+    font-size: 11px;
+    padding: 0.3em 0.6em;
+  }
+}

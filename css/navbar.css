@@ -1,0 +1,202 @@
+/**
+ * ============================================================================
+ * BARRA DE NAVEGACIÓN GLASSMORPHISM MODERNA
+ * ============================================================================
+ * 
+ * CARACTERÍSTICAS:
+ *   - Efecto glassmorphism con blur y transparencia
+ *   - Animaciones suaves de scroll y hover
+ *   - Responsive design para móviles
+ *   - Indicador de sección activa
+ *   - Transiciones fluidas entre estados
+ * 
+ * AUTOR: Jezrael Jared Gómez Torres
+ * ============================================================================
+ */
+
+/* ========== NAVBAR BASE ========== */
+.navbar {
+  background: rgba(10, 14, 39, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  padding: 1rem 0;
+}
+
+/* Estado scrolled - navbar más compacto */
+.navbar.scrolled {
+  background: rgba(10, 14, 39, 0.95);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  padding: 0.5rem 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== BRAND/LOGO ========== */
+.navbar-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--light) !important;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: var(--primary) !important;
+  transform: translateY(-2px);
+}
+
+.navbar-brand i {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.8rem;
+  animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+/* ========== NAVEGACIÓN ITEMS ========== */
+.navbar-nav {
+  gap: 0.5rem;
+}
+
+.nav-link {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  color: var(--gray-light) !important;
+  text-decoration: none;
+  padding: 0.75rem 1.25rem !important;
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.nav-link:hover {
+  color: var(--light) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.nav-link:hover::before {
+  width: 100%;
+}
+
+/* Estado activo */
+.nav-link.active {
+  color: var(--light) !important;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* ========== TOGGLE BUTTON MÓVIL ========== */
+.navbar-toggler {
+  border: none !important;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+.navbar-toggler:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background: rgba(10, 14, 39, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 16px;
+    margin-top: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: slideDown 0.3s ease;
+  }
+  
+  .navbar-nav {
+    gap: 0.25rem;
+  }
+  
+  .nav-link {
+    text-align: center;
+    margin: 0.25rem 0;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== INDICADOR DE PROGRESO ========== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  z-index: 1001;
+  transition: width 0.1s ease;
+}
+
+/* ========== EFECTOS ADICIONALES ========== */
+.navbar-container {
+  position: relative;
+}
+
+.navbar-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 100px;
+  background: radial-gradient(ellipse, rgba(102, 126, 234, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.navbar:hover .navbar-glow {
+  opacity: 1;
+}

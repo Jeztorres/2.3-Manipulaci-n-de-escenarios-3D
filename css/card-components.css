@@ -1,0 +1,431 @@
+/**
+ * ============================================================================
+ * COMPONENTES INTERNOS DE TARJETAS
+ * ============================================================================
+ * 
+ * Sistema completo de componentes para las tarjetas de demos.
+ * Cada componente está diseñado con efectos premium inspirados en UIverse.io
+ * 
+ * Inspirado en: UIverse.io card components
+ * Referencia: https://uiverse.io/cards
+ * 
+ * COMPONENTES INCLUIDOS:
+ * - Header: Iconos, status y categorías
+ * - Body: Títulos, descripciones, stats y features
+ * - Footer: Botones de acción con efectos shine
+ * - Iconos temáticos con animaciones
+ * - Tags y badges personalizados
+ * - Botones con gradientes y efectos hover
+ * 
+ * TEMAS SOPORTADOS:
+ * - Minecraft (tierra/verde)
+ * - Orbit (azul/púrpura) 
+ * - PointerLock (rojo/turquesa)
+ * - Map (naranja/verde)
+ * ============================================================================
+ */
+/* ========== HEADER DE TARJETA ========== */
+/* 
+ * Sección superior con icono, status y categoría
+ * Layout flexbox para distribución equilibrada
+ */
+.card-header {
+  padding: 20px 20px 0;                       /* Espaciado más compacto */
+  display: flex;                              /* Layout flexbox */
+  justify-content: center;                    /* Centrar contenido */
+  align-items: center;                        /* Alineación central */
+  flex-direction: column;                     /* Orientación vertical */
+}
+
+/* ========== WRAPPER DE ICONO Y STATUS ========== */
+/* Agrupa el icono principal con el indicador de status */
+.card-icon-wrapper {
+  display: flex;                              /* Layout flexbox */
+  align-items: center;                        /* Centrado vertical */
+  gap: 12px;                                 /* Espacio entre elementos reducido */
+  margin-bottom: 8px;                        /* Espacio inferior */
+}
+
+/* ========== ICONO PRINCIPAL ========== */
+/* 
+ * Icono temático con gradiente y sombra
+ * Cada tema tiene su propio estilo visual
+ */
+.card-icon {
+  width: 50px;                               /* Tamaño más compacto */
+  height: 50px;
+  border-radius: 15px;                       /* Bordes redondeados */
+  display: flex;                             /* Centrado del icono */
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;                         /* Tamaño del icono reducido */
+  color: white;                              /* Color blanco */
+  position: relative;                        /* Para efectos */
+  overflow: hidden;                          /* Oculta desbordamientos */
+}
+
+/* ========== ICONOS TEMÁTICOS ========== */
+
+/* Icono Minecraft - Colores tierra y hierba */
+.minecraft-icon {
+  background: linear-gradient(135deg, #8b4513, #228b22); /* Marrón a verde */
+  box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);       /* Sombra marrón */
+}
+
+/* Icono Orbit - Azules espaciales con rotación */
+.orbit-icon {
+  background: linear-gradient(135deg, #4a90e2, #7b68ee); /* Azul a púrpura */
+  box-shadow: 0 10px 25px rgba(74, 144, 226, 0.3);      /* Sombra azul */
+  animation: rotate 3s linear infinite;                   /* Rotación continua */
+}
+
+/* Icono PointerLock - Rojos dinámicos */
+.pointerlock-icon {
+  background: linear-gradient(135deg, #ff6b6b, #4ecdc4); /* Rojo a turquesa */
+  box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);     /* Sombra roja */
+}
+
+/* Icono Map - Naranjas naturales */
+.map-icon {
+  background: linear-gradient(135deg, #ffa726, #66bb6a); /* Naranja a verde */
+  box-shadow: 0 10px 25px rgba(255, 167, 38, 0.3);      /* Sombra naranja */
+}
+
+/* ========== INDICADOR DE STATUS ========== */
+/* 
+ * Muestra el estado activo/inactivo de la demo
+ * Incluye dot animado y texto descriptivo
+ */
+.card-status {
+  display: flex;                              /* Layout flexbox */
+  align-items: center;                        /* Centrado vertical */
+  gap: 8px;                                  /* Espacio entre dot y texto */
+  font-size: 0.8rem;                         /* Texto pequeño */
+  color: var(--gray-light);                  /* Color gris claro */
+}
+
+/* Dot pulsante para indicar actividad */
+.status-dot {
+  width: 8px;                                /* Tamaño pequeño */
+  height: 8px;
+  border-radius: 50%;                        /* Forma circular */
+  background: #4ade80;                       /* Verde activo */
+  animation: pulse 2s infinite;              /* Pulsación continua */
+}
+
+/* ========== CATEGORÍA DE TARJETA ========== */
+/* 
+ * Badge de categoría centrado
+ * Texto en mayúsculas con espaciado de letras
+ */
+.card-category {
+  font-size: 0.75rem;                        /* Texto más pequeño */
+  color: var(--accent);                      /* Color accent (rosa) */
+  font-weight: 600;                          /* Texto semi-bold */
+  text-transform: uppercase;                 /* Mayúsculas */
+  letter-spacing: 1px;                       /* Espaciado entre letras */
+  text-align: center;                        /* Centrado */
+}
+
+/* ========== CUERPO DE TARJETA ========== */
+/* 
+ * Sección principal con contenido descriptivo
+ * Utiliza flex para ocupar el espacio disponible
+ */
+.card-body {
+  padding: 20px;                              /* Espaciado más compacto */
+  flex: 1;                                   /* Ocupa espacio disponible */
+  text-align: center;                        /* Centrar todo el contenido */
+}
+
+/* ========== TÍTULO PRINCIPAL ========== */
+/* 
+ * Título prominente de cada demo
+ * Tipografía bold para máximo impacto
+ */
+.card-title {
+  font-size: 1.6rem;                         /* Tamaño más compacto */
+  font-weight: 700;                          /* Muy bold */
+  margin-bottom: 12px;                       /* Espaciado inferior reducido */
+  color: var(--light);                       /* Texto blanco */
+}
+
+/* ========== DESCRIPCIÓN ========== */
+/* 
+ * Texto descriptivo de la demo
+ * Optimizado para legibilidad
+ */
+.card-description {
+  color: var(--gray-light);                  /* Gris claro */
+  margin-bottom: 16px;                       /* Espaciado inferior reducido */
+  line-height: 1.5;                          /* Altura de línea más compacta */
+  font-size: 0.9rem;                         /* Ligeramente más pequeño */
+}
+
+/* ========== ESTADÍSTICAS ========== */
+/* 
+ * Sección de stats con iconos
+ * Layout horizontal con espaciado uniforme
+ */
+.card-stats {
+  display: flex;                             /* Layout flexbox */
+  gap: 16px;                                /* Espacio entre stats reducido */
+  margin-bottom: 16px;                       /* Espaciado inferior reducido */
+  justify-content: center;                   /* Centrar estadísticas */
+}
+
+/* Stat individual con icono y texto */
+.stat {
+  display: flex;                             /* Layout flexbox */
+  align-items: center;                       /* Centrado vertical */
+  gap: 8px;                                 /* Espacio icono-texto */
+  font-size: 0.85rem;                       /* Texto pequeño */
+  color: var(--gray-light);                 /* Gris claro */
+}
+
+/* Iconos de stats con color accent */
+.stat i {
+  color: var(--accent);                      /* Color rosa accent */
+  width: 16px;                              /* Ancho fijo para alineación */
+}
+
+/* ========== FEATURES/TAGS ========== */
+/* 
+ * Contenedor de tags de características
+ * Layout flexible que se adapta al contenido
+ */
+.card-features {
+  display: flex;                             /* Layout flexbox */
+  gap: 8px;                                 /* Espacio entre tags */
+  flex-wrap: wrap;                          /* Permite salto de línea */
+}
+
+/* ========== TAG BASE ========== */
+/* 
+ * Estilo base para todos los feature tags
+ * Inspirado en badges modernos de UIverse.io
+ */
+.feature-tag {
+  padding: 6px 12px;                        /* Espaciado interno */
+  border-radius: 20px;                      /* Bordes muy redondeados */
+  font-size: 0.75rem;                       /* Texto pequeño */
+  font-weight: 600;                         /* Semi-bold */
+  text-transform: uppercase;                /* Mayúsculas */
+  letter-spacing: 0.5px;                    /* Espaciado de letras */
+}
+
+/* ========== TAGS TEMÁTICOS ========== */
+
+/* Tags Minecraft - Estilo tierra y naturaleza */
+.minecraft-tag {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 69, 19, 0.3),                 /* Marrón transparente */
+    rgba(34, 139, 34, 0.3)                  /* Verde transparente */
+  );
+  border: 1px solid rgba(139, 69, 19, 0.5); /* Borde marrón */
+  color: #90ee90;                           /* Verde claro */
+}
+
+/* Tags Orbit - Estilo espacial */
+.orbit-tag {
+  background: linear-gradient(
+    135deg,
+    rgba(74, 144, 226, 0.3),                /* Azul transparente */
+    rgba(123, 104, 238, 0.3)                /* Púrpura transparente */
+  );
+  border: 1px solid rgba(74, 144, 226, 0.5); /* Borde azul */
+  color: #87ceeb;                           /* Azul cielo */
+}
+
+/* Tags PointerLock - Estilo dinámico */
+.pointerlock-tag {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 107, 0.3),               /* Rojo transparente */
+    rgba(78, 205, 196, 0.3)                 /* Turquesa transparente */
+  );
+  border: 1px solid rgba(255, 107, 107, 0.5); /* Borde rojo */
+  color: #ffb6c1;                           /* Rosa claro */
+}
+
+/* Tags Map - Estilo natural */
+.map-tag {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 167, 38, 0.3),                /* Naranja transparente */
+    rgba(102, 187, 106, 0.3)                /* Verde transparente */
+  );
+  border: 1px solid rgba(255, 167, 38, 0.5); /* Borde naranja */
+  color: #f0e68c;                           /* Amarillo claro */
+}
+
+/* ========== FOOTER DE TARJETA ========== */
+/* 
+ * Sección inferior con botón de acción principal
+ * Espaciado optimizado para el botón
+ */
+.card-footer {
+  padding: 0 20px 20px;                      /* Espaciado más compacto */
+}
+
+/* ========== BOTÓN DE ACCIÓN PRINCIPAL ========== */
+/* 
+ * Botón CTA (Call To Action) con efectos premium
+ * Inspirado en los mejores botones de UIverse.io
+ * Incluye efecto shine y elevación en hover
+ */
+.card-button {
+  width: 100%;                               /* Ancho completo */
+  padding: 15px 25px;                        /* Espaciado generoso */
+  border-radius: 15px;                       /* Bordes redondeados */
+  font-weight: 600;                          /* Texto semi-bold */
+  font-size: 1rem;                           /* Tamaño estándar */
+  text-decoration: none;                     /* Sin subrayado */
+  
+  /* ========== LAYOUT FLEXBOX ========== */
+  display: flex;                             /* Layout flexbox */
+  align-items: center;                       /* Centrado vertical */
+  justify-content: center;                   /* Centrado horizontal */
+  gap: 10px;                                /* Espacio icono-texto */
+  
+  /* ========== EFECTOS Y TRANSICIONES ========== */
+  transition: all 0.3s ease;                /* Transición suave */
+  position: relative;                        /* Para efecto shine */
+  overflow: hidden;                          /* Oculta shine overflow */
+  border: none;                              /* Sin borde */
+  color: white;                              /* Texto blanco */
+  
+  /* ========== EFECTO DE DESLIZAMIENTO ========== */
+  /* Similar al botón "Explorar Demos" */
+  --slide-color: rgba(255, 255, 255, 0.2);  /* Color del deslizamiento */
+}
+
+/* ========== BOTONES TEMÁTICOS ========== */
+
+/* Botón Minecraft - Gradiente tierra/hierba */
+.minecraft-btn {
+  background: linear-gradient(135deg, #8b4513, #228b22); /* Marrón a verde */
+  box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);       /* Sombra marrón */
+  --slide-color: rgba(255, 255, 255, 0.15);             /* Color deslizamiento */
+}
+
+/* Botón Orbit - Gradiente espacial */
+.orbit-btn {
+  background: linear-gradient(135deg, #4a90e2, #7b68ee); /* Azul a púrpura */
+  box-shadow: 0 10px 25px rgba(74, 144, 226, 0.3);      /* Sombra azul */
+  --slide-color: rgba(255, 255, 255, 0.2);              /* Color deslizamiento */
+}
+
+/* Botón PointerLock - Gradiente dinámico */
+.pointerlock-btn {
+  background: linear-gradient(135deg, #ff6b6b, #4ecdc4); /* Rojo a turquesa */
+  box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);     /* Sombra roja */
+  --slide-color: rgba(255, 255, 255, 0.18);             /* Color deslizamiento */
+}
+
+/* Botón Map - Gradiente natural */
+.map-btn {
+  background: linear-gradient(135deg, #ffa726, #66bb6a); /* Naranja a verde */
+  box-shadow: 0 10px 25px rgba(255, 167, 38, 0.3);      /* Sombra naranja */
+  --slide-color: rgba(255, 255, 255, 0.16);             /* Color deslizamiento */
+}
+
+/* ========== EFECTOS HOVER BASE ========== */
+/* 
+ * Efectos comunes para todos los botones en hover
+ */
+.card-button:hover {
+  transform: translateY(-3px);               /* Elevación */
+  color: white;                              /* Mantiene color blanco */
+  text-decoration: none;                     /* Sin subrayado */
+}
+
+/* ========== SOMBRAS HOVER TEMÁTICAS ========== */
+/* 
+ * Sombras intensificadas para cada tema en hover
+ */
+.minecraft-btn:hover {
+  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.4);       /* Sombra intensa */
+}
+
+.orbit-btn:hover {
+  box-shadow: 0 15px 35px rgba(74, 144, 226, 0.4);      /* Sombra intensa */
+}
+
+.pointerlock-btn:hover {
+  box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);     /* Sombra intensa */
+}
+
+.map-btn:hover {
+  box-shadow: 0 15px 35px rgba(255, 167, 38, 0.4);      /* Sombra intensa */
+}
+
+/* ========== EFECTO DE DESLIZAMIENTO ========== */
+/* 
+ * Elemento decorativo que se desliza horizontalmente
+ * Similar al botón "Explorar Demos"
+ */
+.card-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--slide-color);
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+/* ========== CONTENIDO DEL BOTÓN ========== */
+/* 
+ * Wrapper para el contenido del botón
+ */
+.btn-text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ========== EFECTO SHINE ========== */
+/* 
+ * Efecto de brillo que atraviesa el botón en hover
+ * Técnica premium inspirada en UIverse.io
+ * Referencia: https://uiverse.io/shine-effects
+ */
+.btn-shine {
+  position: absolute;                        /* Posicionamiento absoluto */
+  top: 0;
+  left: -100%;                              /* Inicia fuera del botón */
+  width: 100%;
+  height: 100%;
+  
+  /* ========== GRADIENTE SHINE ========== */
+  background: linear-gradient(
+    90deg,
+    transparent,                             /* Transparente inicio */
+    rgba(255, 255, 255, 0.2),              /* Brillo blanco centro */
+    transparent                             /* Transparente final */
+  );
+  
+  transition: left 0.5s;                    /* Transición del movimiento */
+  z-index: 1;
+}
+
+/* ========== EFECTOS HOVER ========== */
+/* 
+ * Efectos que se activan al pasar el mouse
+ */
+
+/* Deslizamiento del elemento decorativo en hover */
+.card-button:hover::before {
+  left: 0;                                   /* Se desliza a posición normal */
+}
+
+/* Activación del shine en hover */
+.card-button:hover .btn-shine {
+  left: 100%;                               /* Se mueve a través del botón */
+}

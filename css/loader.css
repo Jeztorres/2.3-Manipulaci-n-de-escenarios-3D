@@ -1,0 +1,152 @@
+/* Loader overlay a pantalla completa con animación reveal (inspirado en UIverse)
+   Mantiene la misma animación dada, pero con mejoras visuales y accesibilidad. */
+
+/* Contenedor del overlay */
+#app-loader {
+  position: fixed;
+  inset: 0;
+  /* Fondo semi-transparente para que se vea el contenido detrás */
+  background: linear-gradient(180deg, rgba(5, 8, 22, 0.85) 0%, rgba(10, 14, 39, 0.85) 100%);
+  display: grid;
+  place-items: center;
+  z-index: 2000; /* por encima del navbar (1000) */
+  transition: opacity 400ms ease, visibility 400ms ease;
+}
+
+/* Si venimos desde una demo, ocultar por completo el loader desde el inicio */
+html.skip-loader #app-loader {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+html.skip-loader body { overflow: auto !important; }
+
+/* Estado oculto al finalizar la carga */
+#app-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Efecto de desenfoque del fondo cuando el loader está activo */
+body.has-loader .navbar,
+body.has-loader .hero,
+body.has-loader .demos-section,
+body.has-loader section {
+  filter: blur(12px);
+  transition: filter 0.4s ease;
+}
+
+/* Cuando el loader se está ocultando, quitar el blur gradualmente */
+#app-loader.fade-out {
+  opacity: 0;
+  transition: opacity 800ms ease;
+}
+
+body.loader-fading .navbar,
+body.loader-fading .hero,
+body.loader-fading .demos-section,
+body.loader-fading section {
+  filter: blur(0px);
+  transition: filter 1000ms ease;
+}
+
+/* Bloquear scroll cuando el loader está visible */
+body.has-loader {
+  overflow: hidden !important;
+}
+
+/* Contenedor del texto del loader */
+.loader {
+  font-family: "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--light);
+  text-align: center;
+  user-select: none;
+}
+
+/* color base de todas las partes */
+.loader > * { color: var(--light); }
+
+/* mantenemos span inline-flex para el efecto */
+.loader span { display: inline-flex; }
+
+/* Líneas (título y subtítulo) */
+.loader-line {
+  display: block;
+}
+
+.loader-title {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+}
+
+/* Ya no usamos una segunda línea; el typewriter va en el título */
+
+/* Desactiva el viejo reveal en la segunda línea (lema) */
+.loader .loader-line:nth-child(2) {
+  letter-spacing: normal !important;
+  animation: none !important;
+}
+
+/* Iconos de código < /> */
+.code-icon {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  color: var(--accent);
+  font-weight: 800;
+  margin: 0 10px;
+  filter: drop-shadow(0 0 8px rgba(240,147,251,0.25));
+}
+
+.code-icon-anim {
+  animation: codeFloat 2.2s ease-in-out infinite;
+}
+
+@keyframes codeFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.95; }
+  50% { transform: translateY(-3px); opacity: 1; }
+}
+
+/* Eliminar animación reveal heredada para evitar efecto robótico */
+.loader > * { color: var(--light); }
+.loader span { display: inline-flex; }
+
+/* Efecto máquina de escribir para el lema (línea inferior) */
+.typewriter {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.typewriter::after {
+  content: '|';
+  margin-left: 6px;
+  color: var(--accent);
+  animation: caretBlink 0.9s steps(1, end) infinite;
+}
+
+@keyframes caretBlink { 50% { opacity: 0; } }
+
+/* Línea sutil brillante debajo del texto */
+.loader-underline {
+  height: 2px;
+  width: min(60vw, 260px);
+  margin: 10px auto 0;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  filter: drop-shadow(0 0 8px rgba(240, 147, 251, 0.35));
+}
+
+/* Crédito del autor debajo del loader */
+.loader-credit {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--gray-light);
+  opacity: 0.9;
+  text-align: center;
+}
+
+.loader-credit strong {
+  color: var(--accent);
+  font-weight: 700;
+}

@@ -1,0 +1,37 @@
+/**
+ * ============================================================================
+ * ESTILOS BASE Y RESET
+ * ============================================================================
+ * 
+ * Contiene los estilos fundamentales y reset CSS para establecer
+ * una base consistente en todos los navegadores.
+ * 
+ * CARACTERÍSTICAS:
+ * - Reset CSS universal
+ * - Configuración de fuentes
+ * - Colores base del body
+ * - Configuración de scroll
+ * 
+ * FUENTES UTILIZADAS:
+ * - Space Grotesk: Fuente principal moderna y legible
+ * - JetBrains Mono: Fuente monoespaciada para código
+ * ============================================================================
+ */
+
+/* ========== RESET UNIVERSAL ========== */
+/* Elimina márgenes, padding y establece box-sizing consistente */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========== CONFIGURACIÓN DEL BODY ========== */
+/* Establece la base visual de toda la aplicación */
+body {
+  font-family: "Space Grotesk", sans-serif;  /* Fuente principal moderna */
+  background: var(--darker);                 /* Fondo oscuro principal */
+  color: var(--light);                       /* Texto claro por defecto */
+  overflow-x: hidden;                        /* Previene scroll horizontal */
+  line-height: 1.6;                          /* Altura de línea óptima para legibilidad */
+}

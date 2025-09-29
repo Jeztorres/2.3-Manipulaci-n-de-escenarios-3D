@@ -1,0 +1,51 @@
+/* ============================================================================
+ * ARCHIVO CSS PRINCIPAL - THREE.JS DEMOS
+ * ============================================================================
+ * Sistema de estilos modular para el sitio de demos de Three.js.
+ * Cada archivo CSS tiene una responsabilidad específica y está documentado
+ * internamente con referencias a UIverse.io donde corresponde.
+ * 
+ * PROYECTO: Three.js Demos - Experiencias 3D Inmersivas
+ * AUTOR: Jezrael Jared Gómez Torres
+ * FECHA: 2025
+ * ============================================================================
+ */
+
+/* ========== ORDEN DE IMPORTACIÓN ========== */
+/* El orden es importante para la cascada CSS correcta: */
+
+/* ========== 1. VARIABLES Y CONFIGURACIÓN ========== */
+@import url('variables.css');              /* Sistema de colores y variables globales */
+
+/* ========== 2. ESTILOS BASE ========== */
+@import url('base.css');                   /* Reset CSS y configuración fundamental */
+
+/* ========== 3. ANIMACIONES ========== */    
+@import url('animations.css');             /* Keyframes y efectos animados */
+
+/* ========== 4. FONDO Y EFECTOS ========== */
+@import url('background.css');             /* Fondo dinámico y sistema de partículas */
+
+/* ========== 5. NAVEGACIÓN ========== */
+@import url('navbar-improved.css');        /* Navbar moderno con efectos avanzados */
+
+/* ========== 6. SECCIÓN HERO ========== */
+@import url('hero.css');                   /* Sección principal con gradientes y animaciones */    
+
+/* ========== 7. SISTEMA DE BOTONES ========== */
+@import url('buttons.css');                /* Botones con efectos shine y elevación */
+
+/* ========== 8. SECCIONES GENERALES ========== */
+@import url('sections.css');               /* Headers y layouts reutilizables */
+
+/* ========== 9. TARJETAS PRINCIPALES ========== */    
+@import url('demo-cards.css');             /* Tarjetas de demos con efectos glow */
+
+/* ========== 10. COMPONENTES DE TARJETAS ========== */
+@import url('card-components.css');        /* Componentes internos: iconos, tags, botones */
+
+/* ========== 11. RESPONSIVE ========== */
+@import url('responsive.css');             /* Media queries y adaptaciones móviles */
+
+/* ========== 12. LOADER (Overlay inicial) ========== */
+@import url('loader.css');                 /* Loader de inicio con animación reveal */
